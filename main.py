@@ -28,10 +28,13 @@ CLAUSES = (
 
 
 def build(clauses):
+    for clause in clauses:
+        assert clause and not clause.isspace(), "every clause must be non-empty"
     line = " ".join(clauses)
     assert line and not line.isspace(), "line must not be empty"
     assert len(line) <= MAX_LEN, f"line is {len(line)} chars, limit {MAX_LEN}"
     assert "\n" not in line and "\r" not in line, "line must be one line"
+    assert line.endswith("home."), "the punch must sit at the end of the line"
     return line
 
 
